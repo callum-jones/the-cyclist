@@ -9,6 +9,7 @@
 // c>a:[336,384]
 // c>b:[384,432]
 
+
 (function () {
   const animData = {
     container: document.getElementById('cycle'),
@@ -26,31 +27,23 @@
 
   let currentState;
 
-  anim.addEventListener('DOMLoaded', function(e) {
-    anim.playSegments([0,48], true);
-    currentState = 'A';
-    console.log(currentState)
-  });
-
-  // When the animation is loaded run our firstLoop function
-  anim.addEventListener('DOMLoaded',loopA);
-  document.documentElement.classList.remove(loadingClass);
+  var init = function () {
+    anim.addEventListener('data_ready',loopA);
+    document.documentElement.classList.remove(loadingClass);
+  }
 
   // Create our playback functions for our 3 speeds
   function loopA() {
     anim.playSegments([0,48], true);
     currentState = 'A';
-    console.log(currentState)
   };
   function loopB() {
     anim.playSegments([48,96], true);
     currentState = 'B';
-    console.log(currentState)
   };
   function loopC() {
     anim.playSegments([96,144], true);
     currentState = 'C';
-    console.log(currentState)
   };
 
   // Transitions
@@ -123,5 +116,11 @@
       console.log('C is current')
     }
   })
+
+  // When the animation is loaded run our firstLoop function
+  // anim.addEventListener('DOMLoaded',loopA);
+  // document.documentElement.classList.remove(loadingClass);
+
+  init()
 
 })();
